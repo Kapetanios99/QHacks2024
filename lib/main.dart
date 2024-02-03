@@ -58,10 +58,10 @@ class MyAppState extends ChangeNotifier {
     }
 
     if (random == 0) {
-      cardsList.add(ScamDetected());
+      cardsList.add(const ScamDetected());
     } 
     else {
-      cardsList.add(NoScamDetected());
+      cardsList.add(const NoScamDetected());
     }
 
     alert = 1;

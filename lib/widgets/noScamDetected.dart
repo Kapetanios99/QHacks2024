@@ -7,14 +7,32 @@ class NoScamDetected extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: Colors.green[400],
-      child: const Padding(
+    return const Card(
+      color: Colors.green,
+      child: Padding(
           padding: EdgeInsets.all(20),
-          child: Text(
-            "This call was determined unlikely to be a scam, but remain cautious!",
-            textAlign: TextAlign.center,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(
+                Icons.check,
+                size: 27,
+                ),
+              Text.rich(
+                TextSpan(
+                  text: ("THIS CALL IS SAFE"),
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  )
+                )
+              ),
+              Icon(
+                Icons.check,
+                size: 27,
+                ),
+            ],
+          ),
         )
       );
   }

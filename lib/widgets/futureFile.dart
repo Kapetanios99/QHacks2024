@@ -12,7 +12,6 @@ class FutureFile extends StatefulWidget {
 }
 
 class _FutureFileState extends State<FutureFile> {
-
   @override 
   Widget build(BuildContext context) {
     return FutureBuilder<PlatformFile> (
@@ -20,10 +19,10 @@ class _FutureFileState extends State<FutureFile> {
 
       builder: (BuildContext context, AsyncSnapshot<PlatformFile> snapshot) {
         if (snapshot.hasData) {
-          return Text(snapshot.data!.name);
+          return Text(snapshot.data!.path!);
         }
         else {
-          return Text("Loading....");
+          return const Text("Loading....");
         }
       }
     );

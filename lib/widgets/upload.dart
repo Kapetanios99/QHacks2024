@@ -24,11 +24,15 @@ class _UploadState extends State<Upload> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Text(
-              "Upload an Audio File"
+            Text(
+              "Upload an Audio File",
+              style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 2.0),
             ),
             IconButton(
-              icon: Icon(Icons.upload),
+              icon: const Icon(
+                Icons.upload,
+                size: 30,
+                ),
               onPressed: () => {
                 appState.addCard(FutureFile())
               },

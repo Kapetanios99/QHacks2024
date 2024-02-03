@@ -65,28 +65,31 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ...appState.cardsList,
-            TextButton(
-              onPressed: () => appState.checkScam(),
-              child: const Text("CHECK FOR SCAMS"),
-              ),
-              FutureBuilder(
-                future: futurePythonData, 
-                builder: (context, snapshot){
-                  if(snapshot.hasData) {
-                    return Text(snapshot.data!.result);
-                  } else if (snapshot.hasError) {
-                    return Text('${snapshot.error}');
+        child: Padding(
+          padding: const EdgeInsets.all(12),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ...appState.cardsList,
+              TextButton(
+                onPressed: () => appState.checkScam(),
+                child: const Text("CHECK FOR SCAMS"),
+                ),
+                FutureBuilder(
+                  future: futurePythonData, 
+                  builder: (context, snapshot){
+                    if(snapshot.hasData) {
+                      return Text(snapshot.data!.result);
+                    } else if (snapshot.hasError) {
+                      return Text('${snapshot.error}');
+                    }
+        
+                    //by default
+                    return const CircularProgressIndicator();
                   }
-
-                  //by default
-                  return const CircularProgressIndicator();
-                }
-                 ),
-          ]
+                   ),
+            ]
+          ),
         ),
       ),
     );
