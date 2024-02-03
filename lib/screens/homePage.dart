@@ -4,6 +4,7 @@ import 'package:call_safe/widgets/transcribedText.dart';
 import 'package:call_safe/widgets/scamDetected.dart';
 import 'package:call_safe/widgets/noScamDetected.dart';
 import 'dart:math';
+import 'package:call_safe/requests.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -43,6 +44,14 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  late Future<PythonReturnData> futurePythonData;
+
+  @override
+  void initState(){
+    super.initState();
+    futurePythonData = fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
     
@@ -60,6 +69,19 @@ class _HomePageState extends State<HomePage> {
               onPressed: () => checkScam(),
               child: const Text("CHECK"),
               ),
+              FutureBuilder(
+                future: futurePythonData, 
+                builder: (context, snapshot){
+                  if(snapshot.hasData) {
+                    return Text(snapshot.data!.result);
+                  } else if (snapshot.hasError) {
+                    return Text('${snapshot.error}');
+                  }
+
+                  //by default
+                  return const CircularProgressIndicator();
+                }
+                 ),
           ]
         ),
       ),
