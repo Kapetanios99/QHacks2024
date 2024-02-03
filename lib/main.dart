@@ -10,9 +10,17 @@ import 'package:call_safe/widgets/transcribedText.dart';
 import 'package:call_safe/widgets/scamDetected.dart';
 import 'package:call_safe/widgets/noScamDetected.dart';
 import 'dart:math';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 
-void main() {
+void main() async {
+  print("We out here");
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  print("MADE IT HERE\n\n\n\n\n\n\n\n\n");
   runApp(const MyApp());
 }
 
