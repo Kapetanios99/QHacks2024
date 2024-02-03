@@ -1,13 +1,16 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:call_safe/widgets/upload.dart';
 import 'package:call_safe/widgets/transcribedText.dart';
 import 'package:call_safe/widgets/scamDetected.dart';
 import 'package:call_safe/widgets/noScamDetected.dart';
 import 'dart:math';
-
+import 'requests.dart';
 void main() {
   runApp(const MyApp());
 }
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -45,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
     TranscribedText(),
   ];
 
+  
+
   void checkScam() {
     setState(() {
       int random = Random().nextInt(2);
@@ -62,7 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
       alert = 1;
     });
+
+   
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,6 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -81,8 +90,11 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () => checkScam(),
               child: Text("CHECK"),
               ),
+              
           ]
+          
         ),
+        
       ),
     );
   }
