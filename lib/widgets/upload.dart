@@ -20,7 +20,7 @@ class _UploadState extends State<Upload> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Text(
-              "Upload an audio file"
+              "Upload an Audio File"
             ),
             Icon(
               Icons.upload
