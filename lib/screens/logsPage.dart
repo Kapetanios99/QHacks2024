@@ -25,6 +25,12 @@ class _LogsPageState extends State<LogsPage> {
             CallLog(),
             CallLog(),
             CallLog(),
+            CallLog(),
+            CallLog(),
+            CallLog(),
+            CallLog(),
+            CallLog(),
+            CallLog(),
           ]
         ),
       ),
