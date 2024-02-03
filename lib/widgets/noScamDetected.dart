@@ -11,7 +11,10 @@ class NoScamDetected extends StatelessWidget {
       color: Colors.green[400],
       child: const Padding(
           padding: EdgeInsets.all(20),
-          child: Text("This call was determined unlikely to be a scam, but remain cautious!"),
+          child: Text(
+            "This call was determined unlikely to be a scam, but remain cautious!",
+            textAlign: TextAlign.center,
+            ),
         )
       );
   }
