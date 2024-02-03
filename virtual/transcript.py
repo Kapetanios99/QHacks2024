@@ -1,13 +1,15 @@
 import speech_recognition as sr
 from pydub import AudioSegment
 from os import path
-from flask import Flask
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
 
+    json_file = {}
+ 
 
     # convert mp3 file to wav                                                       
     # sound = AudioSegment.from_mp3("sample-3.mp3")
@@ -22,6 +24,9 @@ def hello_world():
         audio = r.record(source)                  
         result = r.recognize_google(audio)
         
+    
+    json_file['result'] = result
+    
     print(result)
-    return "<p>Hello, World!</p>"
+    return jsonify(json_file)
 
