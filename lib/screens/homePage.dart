@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Color.fromARGB(255, 33, 149, 243),
         title: const Center(child: Text("CallSafe", textAlign: TextAlign.center,)) ,
         titleTextStyle: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold, ),
       ),
