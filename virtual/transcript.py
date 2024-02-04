@@ -3,7 +3,7 @@ from pydub import AudioSegment
 import os
 import threading
 import time
-from flask import Flask
+from flask import Flask, jsonify
 import json
 import io
 import firebase_admin
@@ -17,7 +17,7 @@ app = firebase_admin.initialize_app(cred, {'storageBucket': 'gs://call-safe.apps
 
 bucket_name = "call-safe.appspot.com"
 
-download_directory = "QHacksPyScript/audio_files"
+download_directory = "audio_files"
 
 # # Fetch the service account key JSON file contents
 # cred = credentials.Certificate('call-safe-firebase-adminsdk-u86zu-5aba86934f.json')
@@ -67,6 +67,7 @@ def split_on_silence(audio_segment, pause_indices):
 # def trigger_download():
 #     return "Download triggered successfully"
 def detectScam():
+    json_file = {}
     download_new_files()
 
     print("in detect scam")
@@ -100,11 +101,13 @@ def detectScam():
 
     print("complete_transcript",complete_transcript)
     result = isScam(complete_transcript)
-    return json.dumps({"result":result, "transcript":complete_transcript})
+    json_file['result'] = str(result)
+    return jsonify(json_file)
+    #return json.dumps({"result":result, "transcript":complete_transcript})
 
 if __name__ == '__main__':
      
     threading.Thread(target=periodic_task).start()
     # Run the Flask application
-    app.run(debug=False, host='127.0.0.1', port=5000)
+    app.run(debug=False, host='10.216.216.153', port=5000)
 
