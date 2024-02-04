@@ -51,20 +51,35 @@ class MyAppState extends ChangeNotifier {
   int alert = 0;
 
   int pressed = 0;
+  String apiResult = '';
 
   void addCard(Widget card) {
     cardsList.add(card);
     notifyListeners();
   }
 
+  Future<void> fetchDataAndCheckScam() async {
+    try {
+      final pythonData = await fetchData();
+      apiResult = pythonData.result;
+      checkScam();
+    } catch (e) {
+      // Handle the exception, e.g., show an error message
+      print('Error fetching data: $e');
+    }
+  }
+
   void checkScam() {
+
     int random = Random().nextInt(2);
 
+    
+    print(apiResult);
     if (alert == 1) {
       cardsList.removeAt(1);
     }
 
-    if (random == 0) {
+    if (apiResult == "True") {
       Vibration.vibrate();
       cardsList.insert(1, const ScamDetected());
     } else {

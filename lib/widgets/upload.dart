@@ -46,7 +46,7 @@ class _UploadState extends State<Upload> {
                     appState.addCard(TextButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 33, 149, 243)), padding: MaterialStateProperty.all<EdgeInsets>(
             EdgeInsets.all(10))),
-                      onPressed: () => appState.checkScam(),
+                      onPressed: () => appState.fetchDataAndCheckScam(),
                       child: const Text.rich( 
                         TextSpan(
                           text: "Check For Scam",

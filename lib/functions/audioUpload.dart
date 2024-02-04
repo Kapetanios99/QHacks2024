@@ -14,27 +14,28 @@ import 'package:firebase_storage/firebase_storage.dart';
 
 import 'package:call_safe/main.dart';
 import 'package:provider/provider.dart';
+import 'package:call_safe/requests.dart';
 
 Future<PlatformFile> uploadAudio(BuildContext context) async {
   var appState = context.watch<MyAppState>();
 
   if (appState.pressed == 1) {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(dialogTitle: "Pick file to analyze.", type: FileType.audio);
+    FilePickerResult? result = await FilePicker.platform
+        .pickFiles(dialogTitle: "Pick file to analyze.", type: FileType.audio);
 
-  // Initialize the audio player
-  // await SimpleAudio.init();
-  // final SimpleAudio player = SimpleAudio();
-  
+    // Initialize the audio player
+    // await SimpleAudio.init();
+    // final SimpleAudio player = SimpleAudio();
+
     if (result != null) {
-        PlatformFile file = result.files.single;
-        final File fileForFirebase = File(file.path!);
+      PlatformFile file = result.files.single;
+      final File fileForFirebase = File(file.path!);
 
-        final storage = FirebaseStorage.instance;
-        final storageRef = storage.ref();
+      final storage = FirebaseStorage.instance;
+      final storageRef = storage.ref();
 
-        final uploadTask = storageRef
-        .child("audio/" + file.name!)
-        .putFile(fileForFirebase);
+      final uploadTask =
+          storageRef.child("audio/" + file.name!).putFile(fileForFirebase);
 
       // // This works! It plays the audio file immediately after upload
       // // and also still shows the file path concurrently.
@@ -57,17 +58,25 @@ Future<PlatformFile> uploadAudio(BuildContext context) async {
       // } else {
       //   print("Failed to upload file. Status code: ${response.statusCode}");
       // }
-        appState.pressed = 0;
+      appState.pressed = 0;
+      late Future<PythonReturnData> futurePythonData;
 
-        return file;
+      @override
+      void initState() {
+        futurePythonData = fetchData();
       }
-      else {
-        // return a default file if none selected.
-        PlatformFile file = PlatformFile(name: "default", size: 0);
+      
+      initState();
 
-        appState.pressed = 0;
-        return file;
-      }
+
+      return file;
+    } else {
+      // return a default file if none selected.
+      PlatformFile file = PlatformFile(name: "default", size: 0);
+
+      appState.pressed = 0;
+      return file;
+    }
   }
   PlatformFile file = PlatformFile(name: "default", size: 0);
 

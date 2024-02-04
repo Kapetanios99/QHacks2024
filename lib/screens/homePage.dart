@@ -26,6 +26,8 @@ class _HomePageState extends State<HomePage> {
     SizedBox(height: 30),
   ];
 
+  
+
   void checkScam() {
     setState(() {
       int random = Random().nextInt(2);
@@ -45,13 +47,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  late Future<PythonReturnData> futurePythonData;
-
-  @override
-  void initState(){
-    super.initState();
-    futurePythonData = fetchData();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
