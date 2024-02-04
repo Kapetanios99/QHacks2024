@@ -17,19 +17,20 @@ class _FutureFileState extends State<FutureFile> {
   @override 
   Widget build(BuildContext context) {
     return FutureBuilder<PlatformFile> (
-      future: uploadAudio(),
+      future: uploadAudio(context),
       
-
-
       builder: (BuildContext context, AsyncSnapshot<PlatformFile> snapshot) {
         if (snapshot.hasData) {
-
-         
-          
-          return Text(snapshot.data!.path!);
+          return const Text(
+            "File Uploaded!",
+            textAlign: TextAlign.center,
+            );
         }
         else {
-          return const Text("Loading....");
+          return const Text(
+            "Loading....",
+            textAlign: TextAlign.center,
+            );
         }
       }
     );

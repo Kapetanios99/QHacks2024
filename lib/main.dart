@@ -12,15 +12,14 @@ import 'package:call_safe/widgets/noScamDetected.dart';
 import 'dart:math';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'package:vibration/vibration.dart';
 
 
 void main() async {
-  print("We out here");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print("MADE IT HERE\n\n\n\n\n\n\n\n\n");
   runApp(const MyApp());
 }
 
@@ -47,11 +46,12 @@ class MyApp extends StatelessWidget {
 class MyAppState extends ChangeNotifier {
   var cardsList = <Widget>[
     Upload(),
-    const SizedBox(height: 30),
-    TranscribedText(),
+    const SizedBox(height: 20),
   ];
 
   int alert = 0;
+
+  int pressed = 0;
 
   void addCard(Widget card) {
     cardsList.add(card);
@@ -62,14 +62,15 @@ class MyAppState extends ChangeNotifier {
     int random = Random().nextInt(2);
 
     if(alert == 1) {
-      cardsList.removeAt(cardsList.length - 1);
+      cardsList.removeAt(1);
     }
 
     if (random == 0) {
-      cardsList.add(const ScamDetected());
+      Vibration.vibrate();
+      cardsList.insert(1, const ScamDetected());
     } 
     else {
-      cardsList.add(const NoScamDetected());
+      cardsList.insert(1, const NoScamDetected());
     }
 
     alert = 1;

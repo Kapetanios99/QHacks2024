@@ -24,7 +24,6 @@ class _HomePageState extends State<HomePage> {
   var cardsList = <Widget>[
     Upload(),
     SizedBox(height: 30),
-    TranscribedText(),
   ];
 
   void checkScam() {
@@ -71,23 +70,19 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ...appState.cardsList,
-              TextButton(
-                onPressed: () => appState.checkScam(),
-                child: const Text("CHECK FOR SCAMS"),
-                ),
-                FutureBuilder(
-                  future: futurePythonData, 
-                  builder: (context, snapshot){
-                    if(snapshot.hasData) {
-                      return Text(snapshot.data!.result);
-                    } else if (snapshot.hasError) {
-                      return Text('${snapshot.error}');
-                    }
-        
-                    //by default
-                    return const CircularProgressIndicator();
-                  }
-                   ),
+              // FutureBuilder(
+              //   future: futurePythonData, 
+              //   builder: (context, snapshot){
+              //     if(snapshot.hasData) {
+              //       return Text(snapshot.data!.result);
+              //     } else if (snapshot.hasError) {
+              //       return Text('${snapshot.error}');
+              //     }
+      
+              //     //by default
+              //     return const CircularProgressIndicator();
+              //   }
+              //     ),
             ]
           ),
         ),

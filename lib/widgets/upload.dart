@@ -34,7 +34,15 @@ class _UploadState extends State<Upload> {
                 size: 30,
                 ),
               onPressed: () => {
-                appState.addCard(FutureFile())
+                appState.pressed = 1,
+                if (appState.cardsList.length < 3) {
+                  appState.addCard(FutureFile()),
+                  appState.addCard(OutlinedButton(
+                    onPressed: () => appState.checkScam(),
+                    child: const Text("CHECK FOR SCAMS"),
+                    )),
+                  appState.addCard(const SizedBox(height: 30)),
+                }
               },
             ),
           ]
