@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "122823192551",
+    "project_id": "call-safe",
+    "storage_bucket": "call-safe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122823192551:android:0dc3a5f55e78d698e31742",
+        "android_client_info": {
+          "package_name": "com.example.call_safe"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsNfELqsEZRbifU27MNwf9ZHkNl4LsMnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
