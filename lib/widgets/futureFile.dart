@@ -21,10 +21,15 @@ class _FutureFileState extends State<FutureFile> {
       
       builder: (BuildContext context, AsyncSnapshot<PlatformFile> snapshot) {
         if (snapshot.hasData) {
-          return const Text(
-            "File Uploaded!",
+          return const Text.rich(
+            TextSpan(
+              text: "File Uploaded!",
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
             textAlign: TextAlign.center,
-            );
+          );
         }
         else {
           return const Text(

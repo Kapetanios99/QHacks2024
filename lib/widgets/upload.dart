@@ -7,47 +7,62 @@ import 'package:call_safe/widgets/futureFile.dart';
 class Upload extends StatefulWidget {
   const Upload({
     super.key,
-    });
+  });
 
   @override
   State<Upload> createState() => _UploadState();
 }
 
 class _UploadState extends State<Upload> {
-  @override 
+  @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
 
     return Card(
-      child: Padding(
-        padding: EdgeInsets.all(20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Text(
-              "Upload an Audio File",
-              style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 2.0),
+        color: Color.fromARGB(255, 33, 149, 243),
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
+            const Text.rich(
+              TextSpan(
+                  text: "Upload an Audio File",
+                  style: TextStyle(
+                      fontSize: 24,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
             ),
             IconButton(
               icon: const Icon(
                 Icons.upload,
-                size: 30,
-                ),
+                size: 50,
+                color: Colors.white,
+              ),
               onPressed: () => {
                 appState.pressed = 1,
-                if (appState.cardsList.length < 3) {
-                  appState.addCard(FutureFile()),
-                  appState.addCard(OutlinedButton(
-                    onPressed: () => appState.checkScam(),
-                    child: const Text("CHECK FOR SCAMS"),
+                if (appState.cardsList.length < 3)
+                  {
+                    appState.addCard(FutureFile()),
+                    appState.addCard(TextButton(
+                      style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 33, 149, 243)), padding: MaterialStateProperty.all<EdgeInsets>(
+            EdgeInsets.all(10))),
+                      onPressed: () => appState.checkScam(),
+                      child: const Text.rich( 
+                        TextSpan(
+                          text: "Check For Scam",
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
                     )),
-                  appState.addCard(const SizedBox(height: 30)),
-                }
+                    appState.addCard(const SizedBox(height: 30)),
+                  }
               },
             ),
-          ]
-        ),
-      )
-    );
+          ]),
+        ));
   }
 }
