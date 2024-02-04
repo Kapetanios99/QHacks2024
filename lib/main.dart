@@ -43,14 +43,21 @@ class MyApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
+
+  int recording = 0;
+ 
   var cardsList = <Widget>[
-    Upload(),
+    const Upload(),
     const SizedBox(height: 20),
   ];
 
   int alert = 0;
 
   int pressed = 0;
+
+  void notify() {
+    notifyListeners();
+  }
 
   void addCard(Widget card) {
     cardsList.add(card);

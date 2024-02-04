@@ -19,31 +19,31 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   // keep track of if there's an active alert
-  int alert = 0;
+  // int alert = 0;
 
-  var cardsList = <Widget>[
-    Upload(),
-    SizedBox(height: 30),
-  ];
+  // var cardsList = <Widget>[
+  //   Upload(),
+  //   SizedBox(height: 30),
+  // ];
 
-  void checkScam() {
-    setState(() {
-      int random = Random().nextInt(2);
+  // void checkScam() {
+  //   setState(() {
+  //     int random = Random().nextInt(2);
 
-      if(alert == 1) {
-        cardsList.removeAt(cardsList.length - 1);
-      }
+  //     if(alert == 1) {
+  //       cardsList.removeAt(cardsList.length - 1);
+  //     }
 
-      if (random == 0) {
-        cardsList.add(ScamDetected());
-      } 
-      else {
-        cardsList.add(NoScamDetected());
-      }
+  //     if (random == 0) {
+  //       cardsList.add(ScamDetected());
+  //     } 
+  //     else {
+  //       cardsList.add(NoScamDetected());
+  //     }
 
-      alert = 1;
-    });
-  }
+  //     alert = 1;
+  //   });
+  // }
 
   late Future<PythonReturnData> futurePythonData;
 
