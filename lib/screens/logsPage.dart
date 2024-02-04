@@ -15,8 +15,9 @@ class _LogsPageState extends State<LogsPage> {
     
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text("Calls"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: const Center(child: Text("Calls", textAlign: TextAlign.center,)) ,
+        titleTextStyle: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold, ),
       ),
       body: Center(
         child: ListView(

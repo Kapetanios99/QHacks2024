@@ -14,7 +14,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:vibration/vibration.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -30,16 +29,16 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => MyAppState(),
-      child: MaterialApp(
-        title: 'CallSafe',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan),
-          useMaterial3: true,
-        ),
-        home: MyHomePage(),
-      )
-    );
+        create: (context) => MyAppState(),
+        child: MaterialApp(
+          title: 'CallSafe',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(
+                seedColor: Color.fromARGB(255, 33, 149, 243)),
+            useMaterial3: true,
+          ),
+          home: MyHomePage(),
+        ));
   }
 }
 
@@ -61,15 +60,14 @@ class MyAppState extends ChangeNotifier {
   void checkScam() {
     int random = Random().nextInt(2);
 
-    if(alert == 1) {
+    if (alert == 1) {
       cardsList.removeAt(1);
     }
 
     if (random == 0) {
       Vibration.vibrate();
       cardsList.insert(1, const ScamDetected());
-    } 
-    else {
+    } else {
       cardsList.insert(1, const NoScamDetected());
     }
 
@@ -87,9 +85,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   var selectedIndex = 0;
 
-  
-
-
   @override
   Widget build(BuildContext context) {
     Widget page;
@@ -104,26 +99,33 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return LayoutBuilder(builder: (context, constraints) {
       return Scaffold(
-        bottomNavigationBar: NavigationBar(
-          onDestinationSelected: (int index) {
-            setState(() {
-              selectedIndex = index;
-            });
-          },
-          indicatorColor: Theme.of(context).colorScheme.secondary,
-          backgroundColor: Theme.of(context).colorScheme.background,
-          selectedIndex: selectedIndex,
-          destinations: const <Widget>[
-            NavigationDestination(
-              selectedIcon: Icon(Icons.home),
-              icon: Icon(Icons.home_outlined),
-              label: 'Home',
+        bottomNavigationBar: NavigationBarTheme(
+          data: NavigationBarThemeData(
+            labelTextStyle: MaterialStateProperty.all(
+              TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
             ),
-            NavigationDestination(
-              icon: Icon(Icons.phone),
-              label: 'Logs',
-            ),
-          ],
+          ),
+          child: NavigationBar(
+            onDestinationSelected: (int index) {
+              setState(() {
+                selectedIndex = index;
+              });
+            },
+            indicatorColor: Color(0xFF1976D2),
+            backgroundColor: Color.fromARGB(255, 33, 149, 243),
+            selectedIndex: selectedIndex,
+            destinations: const <Widget>[
+              NavigationDestination(
+                selectedIcon: Icon(Icons.home, color: Colors.white),
+                icon: Icon(Icons.home, color: Colors.white),
+                label: 'Home',
+              ),
+              NavigationDestination(
+                icon: Icon(Icons.phone, color: Colors.white),
+                label: 'Logs',
+              ),
+            ],
+          ),
         ),
         body: Row(
           children: [

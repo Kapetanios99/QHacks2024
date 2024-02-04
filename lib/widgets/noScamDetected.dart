@@ -17,6 +17,7 @@ class NoScamDetected extends StatelessWidget {
               Icon(
                 Icons.check,
                 size: 27,
+                color: Colors.white,
                 ),
               Text.rich(
                 TextSpan(
@@ -24,12 +25,14 @@ class NoScamDetected extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
+                    color: Colors.white,
                   )
                 )
               ),
               Icon(
                 Icons.check,
                 size: 27,
+                color: Colors.white,
                 ),
             ],
           ),

@@ -17,6 +17,7 @@ class ScamDetected extends StatelessWidget {
               Icon(
                 Icons.warning_sharp,
                 size: 29,
+                color: Colors.white,
                 ),
               Text.rich(
                 TextSpan(
@@ -24,12 +25,14 @@ class ScamDetected extends StatelessWidget {
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
+                    color: Colors.white,
                   )
                 )
               ),
               Icon(
                 Icons.warning_sharp,
                 size: 29,
+                color: Colors.white,
                 ),
             ],
           ),
