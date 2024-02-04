@@ -54,6 +54,7 @@ class MyAppState extends ChangeNotifier {
   int alert = 0;
 
   int pressed = 0;
+  String apiResult = '';
 
   void notify() {
     notifyListeners();
@@ -64,14 +65,26 @@ class MyAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void checkScam() {
-    int random = Random().nextInt(2);
+  Future<String> fetchDataAndCheckScam() async {
+    try {
+      final pythonData = await fetchData();
+      apiResult = pythonData.result;
+      checkScam();
+    } catch (e) {
+      // Handle the exception, e.g., show an error message
+      print('Error fetching data: $e');
+    }
 
+    return apiResult;
+  }
+
+  void checkScam() {
+    print(apiResult);
     if (alert == 1) {
       cardsList.removeAt(1);
     }
 
-    if (random == 0) {
+    if (apiResult == "True") {
       Vibration.vibrate();
       cardsList.insert(1, const ScamDetected());
     } else {

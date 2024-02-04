@@ -21,10 +21,12 @@ class _HomePageState extends State<HomePage> {
   // keep track of if there's an active alert
   // int alert = 0;
 
-  // var cardsList = <Widget>[
-  //   Upload(),
-  //   SizedBox(height: 30),
-  // ];
+  var cardsList = <Widget>[
+    Upload(),
+    SizedBox(height: 30),
+  ];
+
+  
 
   // void checkScam() {
   //   setState(() {
@@ -45,13 +47,7 @@ class _HomePageState extends State<HomePage> {
   //   });
   // }
 
-  late Future<PythonReturnData> futurePythonData;
-
-  @override
-  void initState(){
-    super.initState();
-    futurePythonData = fetchData();
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +56,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Color.fromARGB(255, 33, 149, 243),
         title: const Center(child: Text("CallSafe", textAlign: TextAlign.center,)) ,
         titleTextStyle: TextStyle(color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold, ),
       ),

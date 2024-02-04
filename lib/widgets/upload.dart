@@ -45,8 +45,24 @@ class _UploadState extends State<Upload> {
                     appState.addCard(FutureFile()),
                     appState.addCard(TextButton(
                       style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color.fromARGB(255, 33, 149, 243)), padding: MaterialStateProperty.all<EdgeInsets>(
-                        EdgeInsets.all(10))),
-                      onPressed: () => appState.checkScam(),
+                            EdgeInsets.all(10))),
+                      onPressed: () => {
+                        appState.addCard(FutureBuilder(
+                          future: appState.fetchDataAndCheckScam(), 
+                          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                            if (snapshot.hasData) {
+                              return const SizedBox(height: 0);
+                            }
+                            else {
+                              return const Text(
+                                "Loading....",
+                                textAlign: TextAlign.center,
+                                );
+                            }
+                          }
+                          )
+                        )
+                      },
                       child: const Text.rich( 
                         TextSpan(
                           text: "Check For Scam",
